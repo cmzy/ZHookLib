@@ -13,9 +13,7 @@ import android.util.Log;
 
 import java.util.Set;
 
-/**
- * @author zhangyong6
- */
+
 public class HookTest {
 
     private static final String TAG = HookTest.class.getSimpleName();
