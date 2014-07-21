@@ -66,10 +66,10 @@ public class HookTest {
                 super.afterHookedMethod(param);
                 Object result = param.getResult();
                 if (result instanceof String) {
-                    param.setResult("zhangyong");
+                    param.setResult("MyResult");
                     l(handler,
                             "afterHookedMethod " + param.method + ",getThrowable="
-                                    + param.getThrowable() + " we fake result as zhangyong");
+                                    + param.getThrowable() + " we fake result as MyResult");
                 } else if ((result instanceof Integer)) {
                     param.setResult(1986);
                     l(handler,
