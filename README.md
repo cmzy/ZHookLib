@@ -82,12 +82,12 @@ Define a class in `HookTest.java`:
 and write a main method for test:
 
 
-     public static void main(final Handler handler) {
+     public static void main() {
         MethodHook callback = new MethodHook() {
             @Override
             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                 super.beforeHookedMethod(param);
-                l(handler, "beforeHookedMethod " + param.method);
+                Log.e("HookTest", "beforeHookedMethod " + param.method);
             }
 
             @Override
@@ -96,16 +96,16 @@ and write a main method for test:
                 Object result = param.getResult();
                 if (result instanceof String) {
                     param.setResult("MyResult");
-                    l(handler,
+                    Log.e("HookTest",
                             "afterHookedMethod " + param.method + ",getThrowable="
                                     + param.getThrowable() + " we fake result as MyResult");
                 } else if ((result instanceof Integer)) {
                     param.setResult(1986);
-                    l(handler,
+                    Log.e("HookTest",
                             "afterHookedMethod " + param.method + ",getThrowable="
                                     + param.getThrowable() + " we fake result as 1986");
                 } else {
-                    l(handler,
+                    Log.e("HookTest",
                             "afterHookedMethod " + param.method + ",getResultOrThrowable="
                                     + param.getResultOrThrowable());
                 }
@@ -119,18 +119,18 @@ and write a main method for test:
 
         HookTest hookTest = new HookTest();
         String msg1 = "i am run on hook: test(1) result=" + hookTest.test(1);
-        l(handler, msg1);
+        Log.e("HookTest", msg1);
 
         String msg2 = "i am run on hook: test(1,fdfdf) result=" + hookTest.test(1, "fdfdf");
-        l(handler, msg2);
+        Log.e("HookTest", msg2);
 
         String msg3 = "i am run on hook: test(1,fdfdf) result=" +
                 hookTest.test("fdfdf");
-        l(handler, msg3);
+        Log.e("HookTest", msg3);
 
         hookTest.test("fdfdf", 1);
         String msg4 = "i am run on hook: test(fdfdf,1) result=void";
-        l(handler, msg4);
+        Log.e("HookTest", msg4);
 
         for (Unhook unhook : unhooks1) {
             unhook.unhook();
@@ -140,9 +140,9 @@ and write a main method for test:
             unhook.unhook();
         }
 
-        l(handler, "i am run after unhook: test1(1) re=" + hookTest.test(1));
-        l(handler, "i am run after unhook: test1(1,fdfdf) re=" + hookTest.test(1, "fdfdf"));
-        l(handler, "i am run after unhook: test1(1,fdfdf) re=" + hookTest.test("fdfdf"));
+        Log.e("HookTest", "i am run after unhook: test1(1) re=" + hookTest.test(1));
+        Log.e("HookTest", "i am run after unhook: test1(1,fdfdf) re=" + hookTest.test(1, "fdfdf"));
+        Log.e("HookTest", "i am run after unhook: test1(1,fdfdf) re=" + hookTest.test("fdfdf"));
 
     }
 
