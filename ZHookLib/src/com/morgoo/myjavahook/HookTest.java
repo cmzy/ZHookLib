@@ -83,7 +83,8 @@ public class HookTest {
 
             }
         };
-
+        
+        
         Set<Unhook> unhooks1 = ZHook.hookAllConstructors(HookTest.class, callback);
         Set<Unhook> unhooks2 = ZHook.hookAllMethods(HookTest.class, "test", callback);
 
